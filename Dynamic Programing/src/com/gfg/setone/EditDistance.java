@@ -1,6 +1,5 @@
 package com.gfg.setone;
 
-
 public class EditDistance {
 
 	int minEditDist(char one[], char two[]) {
