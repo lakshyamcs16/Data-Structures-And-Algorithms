@@ -21,8 +21,8 @@
  * 19.  Pre-Inorder to BST
  * 20.  Double Tree
  */
+package com.traversals.com.traversals;
 
-package com.traversals;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,9 +57,9 @@ public class Traversal {
 	//----------------------------------------------------------------------------------------------
 
 	
-	static Node root, root2;
+	static Node root, root2, root3;
 	static int max = Integer.MIN_VALUE, preIndex, staticIndex;
-	
+	Node first, middle, last, prev = null;
 	//----------------------------------------------------------------------------------------------
 
 	void inorder(Node node){
@@ -834,6 +834,43 @@ public class Traversal {
 		topView(node.right, level+1);
 		
 	}
+	/*			10
+    *   	   /  \
+    * 		  5    8
+    * 		 / \
+    * 		2   20 */
+	private void swappedNodesUtil(Node node) {
+		if(node == null) {
+			return;
+		}
+		swappedNodesUtil(node.left);
+		if(prev!=null && node.data < prev.data) {
+			if(first != null) {
+				last = node;
+			}else {
+				first = prev;
+				middle = node;	
+			}
+		}
+		prev = node;
+		swappedNodesUtil(node.right);
+	}
+	public void swappedNodes(Node root) {
+		swappedNodesUtil(root);
+		if(first !=null && last !=null) {
+			int temp = first.data;
+			first.data = last.data;
+			last.data = temp;
+		}else if(first !=null && middle !=null) {
+			int temp = first.data;
+			first.data = middle.data;
+			middle.data = temp;
+		}else {
+			System.out.println("Bro, it's already a BST!");
+		}
+		System.out.print(" | ");
+		inorder(root);
+	}
 	
 	public void showView() {
 	
@@ -876,6 +913,11 @@ public class Traversal {
 		 *      4   6
 		 *     / 
 		 *    4   
+		 *   		10
+	     *   	   /  \
+	     * 		  5    8
+	     * 		 / \
+	     * 		2   20
 		 */
 		
 	    /*root = new Node(10);
@@ -905,6 +947,9 @@ public class Traversal {
 		root2.left.left = new Node(4);
 		root2.left.right = new Node(6);
 		
+		root3 = new Node(10); root3.left = new Node(5); root3.left.left = new Node(2);
+		root3.left.right = new Node(20); root3.right = new Node(8);
+		
 		int in[]  	   = {4, 2, 5, 1, 6, 3};
 		int pre[]      = {1, 2, 4, 5, 3, 6};
 		
@@ -921,6 +966,10 @@ public class Traversal {
 		System.out.println("\n\n"+(++i)+". Top View");
 		travel.topView(root, 0);
 		travel.showView();
+		
+		System.out.println("\n\n"+(++i)+". Swapped nodes correction");
+		travel.inorder(root3);
+		travel.swappedNodes(root3);
 		
 		System.out.println("\n\n"+(++i)+". Tree from Parent Array");
 		travel.inorder(travel.createTreeFromParentArray(parent));
