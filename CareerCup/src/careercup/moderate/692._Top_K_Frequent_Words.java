@@ -24,6 +24,12 @@ Explanation: "the", "is", "sunny" and "day" are the four most frequent words,
 
 */
 
+/*
+    Report:
+        Time: Beats 99.78% | O(nlogk)
+        Space: Beats 17.64% | O(n)
+*/
+
 class Solution {
     public List<String> topKFrequent(String[] words, int k) {
        Map<String, Integer> map = new HashMap<String, Integer>();
