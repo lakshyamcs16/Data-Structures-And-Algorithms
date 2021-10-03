@@ -4,11 +4,12 @@ public class RatMazeProblem {
 
 	static int N = 5;
 	
+	/* Check for valid moves */
 	static boolean isValidMove(int x, int y, Integer maze[][]){
 		return (x>=0 && x<5 && y>=0 && y<4 && maze[x][y]==1);
 	}
 	
-
+	/* solve the maze and print the solution, if any */
 	static boolean solveMaze() {
 		Integer maze[][] = {{1, 1, 1, 1},
 						    {0, 0, 0, 1},
@@ -30,6 +31,7 @@ public class RatMazeProblem {
 		
 		
 	}
+	/* A utility recursive function for solving the maze */
 	private static boolean solveMaze(int x, int y, Integer[][] maze, int[] xMove, int[] yMove) {
 		int next_x, next_y, i;
 		
@@ -39,19 +41,24 @@ public class RatMazeProblem {
 		for(i=0; i<3; i++){
 			next_x = x + xMove[i];
 			next_y = y + yMove[i];
+			// Keep trying as long as the move is valid
 			if(isValidMove(next_x, next_y, maze)){
 				maze[next_x][next_y] = -1;
+				//if solved successfully, return true
 				if(solveMaze(next_x, next_y, maze, xMove, yMove))
 					return true;
 				else
+					//mark back to 1, backtrack
 					maze[next_x][next_y] = 1;
 			}
 		}
+		//back track the entire step
 		return false;
 	}
 
 
 	public static void main(String[] args) {
+		//call the solve maze function
 		solveMaze();
 	}
 
