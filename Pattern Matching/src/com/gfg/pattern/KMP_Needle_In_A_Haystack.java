@@ -12,7 +12,6 @@ class Solution {
     private int KMP(String str, String ptn, int m, int n, int[] ls) {
         int j = 0;
         int i = 0;
-        int match = -1;
         
         while(j < n && i<m) {
             if (str.charAt(i) == ptn.charAt(j)) {
