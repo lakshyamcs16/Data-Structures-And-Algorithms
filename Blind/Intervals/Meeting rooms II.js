@@ -50,8 +50,6 @@ export class Solution {
         let rooms = 0, res = 0;
 
         while (i < starts.length && j < ends.length) {
-            console.log(rooms, starts[i], ends[j]);
-
             if (starts[i] < ends[j]) {
                 rooms++;
                 i++;
