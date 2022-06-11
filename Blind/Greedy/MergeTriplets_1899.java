@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class MergeTriplets_1899 {
     public boolean mergeTriplets(int[][] triplets, int[] target) {
         int n = triplets.length;
