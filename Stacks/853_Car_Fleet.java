@@ -52,7 +52,9 @@ class Solution {
     class Pair {
         int pos;
         int speed;
-        Pair(int p, int s) { pos = p; speed = s; }
+        Pair(int p, int s) { 
+         pos = p; speed = s; 
+        }
     }
     
     public int carFleet(int target, int[] position, int[] speed) {
